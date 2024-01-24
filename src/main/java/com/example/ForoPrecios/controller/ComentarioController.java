@@ -1,7 +1,9 @@
 package com.example.ForoPrecios.controller;
 
+import com.example.ForoPrecios.dto.ComentarioDTO;
 import com.example.ForoPrecios.model.Comentario;
 import com.example.ForoPrecios.service.IComentarioService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +31,8 @@ public class ComentarioController {
     }
     
     @PostMapping("/comentarios/crear")
-    public void crearComentario(@RequestBody Comentario comentario){
+    public void crearComentario(@RequestBody @Valid ComentarioDTO comentarioDTO){
+        Comentario comentario = Comentario.builder().texto(comentarioDTO.getTexto()).fecha(comentarioDTO.getFecha()).build();
         comentarioService.saveComentario(comentario);
     }
     

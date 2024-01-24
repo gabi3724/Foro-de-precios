@@ -1,7 +1,9 @@
 package com.example.ForoPrecios.controller;
 
+import com.example.ForoPrecios.dto.PostDTO;
 import com.example.ForoPrecios.model.Post;
 import com.example.ForoPrecios.service.IPostService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +32,15 @@ public class PostController {
     }
     
     @PostMapping("/posts/crear")
-    public void crearPost(@RequestBody Post post){
+    public void crearPost(@RequestBody @Valid PostDTO postDTO){
+        Post post = Post.builder()
+                .precio(postDTO.getPrecio())
+                .fecha(postDTO.getFecha())
+                .producto(postDTO.getProducto())
+                .categoria(postDTO.getCategoria())
+                .local(postDTO.getLocal())
+                .usuario(postDTO.getUsuario())
+                .build();
         postService.savePost(post);
     }
     

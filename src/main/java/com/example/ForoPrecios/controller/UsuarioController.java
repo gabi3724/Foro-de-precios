@@ -1,7 +1,9 @@
 package com.example.ForoPrecios.controller;
 
+import com.example.ForoPrecios.dto.UsuarioDTO;
 import com.example.ForoPrecios.model.Usuario;
 import com.example.ForoPrecios.service.IUsuarioService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +31,12 @@ public class UsuarioController {
     }
     
     @PostMapping("/usuarios/crear")
-    public void crearUsuario(@RequestBody Usuario usuario){
+    public void crearUsuario(@RequestBody @Valid UsuarioDTO usuarioDTO){
+        Usuario usuario = new Usuario();
+        usuario.setNombre(usuarioDTO.getNombre());
+        usuario.setApellido(usuarioDTO.getApellido());
+        usuario.setEmail(usuarioDTO.getEmail());
+        usuario.setContraseña(usuarioDTO.getContraseña());
         usuarioService.saveUsuario(usuario);
     }
     

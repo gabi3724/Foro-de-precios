@@ -1,7 +1,9 @@
 package com.example.ForoPrecios.controller;
 
+import com.example.ForoPrecios.dto.LocalDTO;
 import com.example.ForoPrecios.model.Local;
 import com.example.ForoPrecios.service.ILocalService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +31,8 @@ public class LocalController {
     }
     
     @PostMapping("/locals/crear")
-    public void crearLocal(@RequestBody Local local){
+    public void crearLocal(@RequestBody @Valid LocalDTO localDTO){
+        Local local = Local.builder().nombre(localDTO.getNombre()).direccion(localDTO.getDireccion()).build();
         localService.saveLocal(local);
     }
     

@@ -36,5 +36,11 @@ public class UsuarioService implements IUsuarioService {
     public void editUsuario(Usuario usuario) {
         this.saveUsuario(usuario);
     }   
+
+    @Override
+    public boolean existeEmail(String email) {
+        Usuario user = usuarioRepo.buscarUsuarioPorEmail(email);
+        return user != null;
+    }
     
 }

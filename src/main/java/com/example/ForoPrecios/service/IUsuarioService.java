@@ -10,5 +10,6 @@ public interface IUsuarioService {
     public void deleteUsuario(Long id);
     public List<Usuario> getUsuarios();
     public void editUsuario(Usuario usuario);
+    public boolean existeEmail(String email);
     
 }
