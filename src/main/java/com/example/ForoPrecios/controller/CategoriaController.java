@@ -1,7 +1,7 @@
 package com.example.ForoPrecios.controller;
 
-import com.example.ForoPrecios.dto.CategoriaDTO;
-import com.example.ForoPrecios.model.Categoria;
+import com.example.ForoPrecios.model.dto.CategoriaDTO;
+import com.example.ForoPrecios.model.entity.Categoria;
 import com.example.ForoPrecios.service.ICategoriaService;
 import jakarta.validation.Valid;
 import java.util.List;

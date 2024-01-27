@@ -1,6 +1,6 @@
 package com.example.ForoPrecios.service;
 
-import com.example.ForoPrecios.model.Categoria;
+import com.example.ForoPrecios.model.entity.Categoria;
 import java.util.List;
 
 public interface ICategoriaService {

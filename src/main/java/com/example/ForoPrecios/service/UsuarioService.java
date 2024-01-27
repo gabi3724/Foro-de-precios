@@ -1,9 +1,10 @@
 package com.example.ForoPrecios.service;
 
-import com.example.ForoPrecios.model.Usuario;
+import com.example.ForoPrecios.model.entity.Usuario;
 import com.example.ForoPrecios.repository.IUsuarioRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,6 +41,12 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public boolean existeEmail(String email) {
         Usuario user = usuarioRepo.buscarUsuarioPorEmail(email);
+        return user != null;
+    }
+    
+    @Override
+    public boolean existeId(Long id) {
+        Usuario user = this.findUsuario(id);
         return user != null;
     }
     

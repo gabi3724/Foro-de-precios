@@ -1,4 +1,4 @@
-package com.example.ForoPrecios.model;
+package com.example.ForoPrecios.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

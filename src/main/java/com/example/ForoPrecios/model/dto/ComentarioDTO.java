@@ -1,4 +1,4 @@
-package com.example.ForoPrecios.dto;
+package com.example.ForoPrecios.model.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

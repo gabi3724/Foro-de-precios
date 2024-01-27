@@ -1,24 +1,22 @@
-package com.example.ForoPrecios.model;
+package com.example.ForoPrecios.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter @Setter
 @Builder
 @Entity
-public class Categoria {
-
+public class Local {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id_categoria;
-    
+    private Long id_local;
     private String nombre;
-    
-    /*@OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
-    private List<Producto> productos;*/
+    private String direccion;
     
 }

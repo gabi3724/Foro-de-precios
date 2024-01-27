@@ -1,9 +1,9 @@
-package com.example.ForoPrecios.dto;
+package com.example.ForoPrecios.model.dto;
 
-import com.example.ForoPrecios.model.Categoria;
-import com.example.ForoPrecios.model.Local;
-import com.example.ForoPrecios.model.Producto;
-import com.example.ForoPrecios.model.Usuario;
+import com.example.ForoPrecios.model.entity.Categoria;
+import com.example.ForoPrecios.model.entity.Local;
+import com.example.ForoPrecios.model.entity.Producto;
+import com.example.ForoPrecios.model.entity.Usuario;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

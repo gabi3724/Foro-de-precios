@@ -1,6 +1,6 @@
 package com.example.ForoPrecios.service;
 
-import com.example.ForoPrecios.model.Post;
+import com.example.ForoPrecios.model.entity.Post;
 import java.util.List;
 
 public interface IPostService {

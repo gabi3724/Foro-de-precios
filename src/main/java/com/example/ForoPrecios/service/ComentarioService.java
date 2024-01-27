@@ -1,6 +1,6 @@
 package com.example.ForoPrecios.service;
 
-import com.example.ForoPrecios.model.Comentario;
+import com.example.ForoPrecios.model.entity.Comentario;
 import com.example.ForoPrecios.repository.IComentarioRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

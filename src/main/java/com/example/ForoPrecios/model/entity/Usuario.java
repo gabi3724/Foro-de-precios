@@ -1,4 +1,4 @@
-package com.example.ForoPrecios.model;
+package com.example.ForoPrecios.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -6,17 +6,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity
-@Getter
-@Setter
-@Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
+@Entity
 public class Usuario {
 
     @Id
@@ -27,6 +24,8 @@ public class Usuario {
     private String apellido;
     private String email;
     private String contraseña;
+    
+    
     
     /*@OneToMany(mappedBy = "usuario")
     private List<Post> posts;*/

@@ -1,6 +1,5 @@
-package com.example.ForoPrecios.dto;
+package com.example.ForoPrecios.model.dto;
 
-import com.example.ForoPrecios.advice.Unique;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -26,7 +25,6 @@ public class UsuarioDTO {
     private String apellido;
     
     @Email(message = "El mail debe ser valido")
-    @Unique(message = "El mail ya se encuentra registrado")
     private String email;
     
     @NotEmpty(message = "La contraseña no puede estar vacia")

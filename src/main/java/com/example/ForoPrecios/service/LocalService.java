@@ -1,6 +1,6 @@
 package com.example.ForoPrecios.service;
 
-import com.example.ForoPrecios.model.Local;
+import com.example.ForoPrecios.model.entity.Local;
 import com.example.ForoPrecios.repository.ILocalRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
