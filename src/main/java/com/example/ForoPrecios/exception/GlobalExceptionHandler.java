@@ -3,6 +3,7 @@ package com.example.ForoPrecios.exception;
 import com.example.ForoPrecios.model.dto.ApiResponseDTO;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -45,6 +46,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponseDTO> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception, WebRequest webRequest) {
         ApiResponseDTO apiResponse = new ApiResponseDTO("La url no existe o faltan parametros", webRequest.getDescription(false));
         return ResponseEntity.badRequest().body(apiResponse);
+    }
+    
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<?> handleDataIntegrityViolationException(DataIntegrityViolationException exception, WebRequest webRequest){
+        ApiResponseDTO apiResponse = new ApiResponseDTO("Una de las clases hijas no existe", webRequest.getDescription(false));
+        return new ResponseEntity<>(apiResponse, HttpStatus.CONFLICT);
     }
     
     //Manejar cualquier excepcion que se genere

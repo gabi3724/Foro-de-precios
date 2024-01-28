@@ -4,7 +4,6 @@ import com.example.ForoPrecios.model.entity.Categoria;
 import com.example.ForoPrecios.model.entity.Local;
 import com.example.ForoPrecios.model.entity.Producto;
 import com.example.ForoPrecios.model.entity.Usuario;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import java.time.LocalDateTime;

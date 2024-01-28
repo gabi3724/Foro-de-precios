@@ -59,7 +59,7 @@ public class PostService implements IPostService {
 
     @Override
     public List<Post> PostsBusqueda(String atributo, String buscar) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
     
 }

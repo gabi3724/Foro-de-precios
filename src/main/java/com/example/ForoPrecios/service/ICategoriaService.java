@@ -10,5 +10,6 @@ public interface ICategoriaService {
     public void deleteCategoria(Long id);
     public List<Categoria> getCategorias();
     public void editCategoria(Categoria categoria);
+    public Categoria obtenerCategoriaPorNombre(String nombre);
     
 }

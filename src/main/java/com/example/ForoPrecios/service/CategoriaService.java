@@ -36,5 +36,10 @@ public class CategoriaService implements ICategoriaService {
     public void editCategoria(Categoria categoria) {
         this.saveCategoria(categoria);
     }   
+
+    @Override
+    public Categoria obtenerCategoriaPorNombre(String nombre) {
+        return categoriaRepo.obtenerCaregoriaPorNombre(nombre);
+    }
     
 }
