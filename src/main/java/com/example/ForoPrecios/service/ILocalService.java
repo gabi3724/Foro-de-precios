@@ -1,6 +1,6 @@
 package com.example.ForoPrecios.service;
 
-import com.example.ForoPrecios.model.Local;
+import com.example.ForoPrecios.model.entity.Local;
 import java.util.List;
 
 public interface ILocalService {

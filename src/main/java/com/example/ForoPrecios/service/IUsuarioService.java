@@ -1,6 +1,6 @@
 package com.example.ForoPrecios.service;
 
-import com.example.ForoPrecios.model.Usuario;
+import com.example.ForoPrecios.model.entity.Usuario;
 import java.util.List;
 
 public interface IUsuarioService {
@@ -10,5 +10,7 @@ public interface IUsuarioService {
     public void deleteUsuario(Long id);
     public List<Usuario> getUsuarios();
     public void editUsuario(Usuario usuario);
+    public boolean existeEmail(String email);
+    public boolean existeId(Long id);
     
 }

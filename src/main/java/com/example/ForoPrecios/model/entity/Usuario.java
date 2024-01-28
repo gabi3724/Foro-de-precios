@@ -1,15 +1,18 @@
-package com.example.ForoPrecios.model;
+package com.example.ForoPrecios.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter @Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 public class Usuario {
 
@@ -21,6 +24,8 @@ public class Usuario {
     private String apellido;
     private String email;
     private String contraseña;
+    
+    
     
     /*@OneToMany(mappedBy = "usuario")
     private List<Post> posts;*/
