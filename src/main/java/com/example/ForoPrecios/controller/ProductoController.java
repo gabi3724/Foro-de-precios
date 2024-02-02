@@ -24,36 +24,35 @@ public class ProductoController {
     private IProductoService productoService;
     
     @GetMapping("/productos/{id}")
-    public ResponseEntity<?> getProducto(@PathVariable Long id){
+    public Producto getProducto(@PathVariable Long id){
         Producto producto = productoService.findProducto(id);
         if(producto == null){
             throw new ResourceNotFoundException("Producto","id",id);
         } 
-        return new ResponseEntity<>(producto, HttpStatus.OK);
+        return producto;
     }
     
     @GetMapping("/productos")
-    public ResponseEntity<?> getProductos(){
+    public List<Producto> getProductos(){
         List<Producto> productos = productoService.getProductos(); 
         if(productos == null || productos.isEmpty()){
             throw new ResourceNotFoundException("Productos");
         }
-        return new ResponseEntity<>(productos, HttpStatus.OK);
+        return productos;
     }
     
     @PostMapping("/productos/crear")
     public ResponseEntity<?> crearProducto(@RequestBody @Valid ProductoDTO productoDTO){
-        Producto producto = Producto.builder().nombre(productoDTO.getNombre()).marca(productoDTO.getMarca()).build();
-        try{
-            productoService.saveProducto(producto);
-            return new ResponseEntity<>(producto, HttpStatus.CREATED);
-        }catch(Exception ex){
-            throw ex;
-        }
+        Producto producto = Producto.builder()
+                .nombre(productoDTO.getNombre())
+                .marca(productoDTO.getMarca())
+                .build();
+        productoService.saveProducto(producto);
+        return new ResponseEntity<>(producto, HttpStatus.CREATED);
     }
     
     @PutMapping("/productos/editar/{id}")
-    public ResponseEntity<?> editarProducto(@PathVariable Long id, @RequestBody @Valid ProductoDTO productoDTO){
+    public Producto editarProducto(@PathVariable Long id, @RequestBody @Valid ProductoDTO productoDTO){
         Producto producto = productoService.findProducto(id);
         if(producto == null){
             throw new ResourceNotFoundException("Producto","id",id); 
@@ -61,12 +60,8 @@ public class ProductoController {
         producto.setId_producto(id);
         producto.setNombre(productoDTO.getNombre());
         producto.setMarca(productoDTO.getMarca());
-        try{
-            productoService.editProducto(producto);
-            return new ResponseEntity<>(producto, HttpStatus.OK);
-        }catch(Exception ex){
-            throw ex;
-        }
+        productoService.editProducto(producto);
+        return producto;
     }
     
     @DeleteMapping("/productos/eliminar/{id}")
@@ -76,7 +71,7 @@ public class ProductoController {
             throw new ResourceNotFoundException("Producto","id",id); 
         }
         productoService.deleteProducto(id);
-        return new ResponseEntity<>("Producto borrado exitosamente", HttpStatus.OK);
+        return new ResponseEntity<>("Producto borrado exitosamente", HttpStatus.NO_CONTENT);
     }
     
 }

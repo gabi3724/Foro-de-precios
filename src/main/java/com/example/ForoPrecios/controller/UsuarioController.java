@@ -16,30 +16,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api/precios")
 public class UsuarioController {
     
     @Autowired
     private IUsuarioService usuarioService;
     
     @GetMapping("/usuarios/{id}")
-    public ResponseEntity<?> getUsuario(@PathVariable Long id){
+    public Usuario getUsuario(@PathVariable Long id){
         Usuario usuario = usuarioService.findUsuario(id); 
         if(usuario == null){
             throw new ResourceNotFoundException("Usuario", "id", id);
         }
-        return new ResponseEntity<>(usuario, HttpStatus.OK);
+        return usuario;
     }
     
     @GetMapping("/usuarios")
-    public ResponseEntity<?> getUsuarios(){
+    public List<Usuario> getUsuarios(){
         List<Usuario> usuarios = usuarioService.getUsuarios(); 
         if(usuarios == null || usuarios.isEmpty()){
             throw new ResourceNotFoundException("Usuarios");
         }
-        return new ResponseEntity<>(usuarios, HttpStatus.OK);
+        return usuarios;
     }
     
     @PostMapping("/usuarios/crear")
@@ -54,38 +56,30 @@ public class UsuarioController {
                 .email(usuarioDTO.getEmail())
                 .contraseña(usuarioDTO.getContraseña())
                 .build();
-        try{
-            usuarioService.saveUsuario(usuario);
-            return new ResponseEntity<>(usuario, HttpStatus.CREATED);
-        }catch(Exception ex){
-            throw ex;
-        }
+        usuarioService.saveUsuario(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
     }
     
     @PutMapping("/usuarios/editar/{id}")
-    public ResponseEntity<?> editarUsuario(@PathVariable Long id, @RequestBody @Valid UsuarioDTO usuarioDTO){
-        Usuario usuarioDB = usuarioService.findUsuario(id);
-        if(usuarioDB == null){
+    public Usuario editarUsuario(@PathVariable Long id, @RequestBody @Valid UsuarioDTO usuarioDTO){
+        Usuario usuario = usuarioService.findUsuario(id);
+        if(usuario == null){
             throw new ResourceNotFoundException("Usuario","id",id);
         }
         String email = usuarioDTO.getEmail();
         //Chequear si el mail que se quiere insertar ya existe en la base de datos y en caso de existir si pertenece a el usuario
-        if((usuarioService.existeEmail(email)) && (!email.equals(usuarioDB.getEmail()))){
+        if((usuarioService.existeEmail(email)) && (!email.equals(usuario.getEmail()))){
             throw new ConflictException("El mail ya existe en la base de datos");
         }
-        Usuario usuario = Usuario.builder()
-                .id_usuario(id)
-                .nombre(usuarioDTO.getNombre())
-                .apellido(usuarioDTO.getApellido())
-                .email(usuarioDTO.getEmail())
-                .contraseña(usuarioDTO.getContraseña())
-                .build();
-        try{
-            usuarioService.editUsuario(usuario);
-            return new ResponseEntity<>(usuario, HttpStatus.OK);
-        }catch(Exception ex){
-            throw ex;
-        }
+        usuario = Usuario.builder()
+            .id_usuario(id)
+            .nombre(usuarioDTO.getNombre())
+            .apellido(usuarioDTO.getApellido())
+            .email(usuarioDTO.getEmail())
+            .contraseña(usuarioDTO.getContraseña())
+            .build();
+        usuarioService.editUsuario(usuario);
+        return usuario;
     }
     
     @DeleteMapping("/usuarios/eliminar/{id}")
@@ -94,7 +88,7 @@ public class UsuarioController {
             throw new ResourceNotFoundException("Usuario","id",id);
         }
         usuarioService.deleteUsuario(id);
-        return new ResponseEntity<>("Usuario borrado exitosamente", HttpStatus.OK);
+        return new ResponseEntity<>("Usuario borrado exitosamente", HttpStatus.NO_CONTENT);
     }
     
 }

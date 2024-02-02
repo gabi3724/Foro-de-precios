@@ -25,21 +25,21 @@ public class PostController {
     private IPostService postService;
     
     @GetMapping("/posts/{id}")
-    public ResponseEntity<?> getPost(@PathVariable Long id){
+    public Post getPost(@PathVariable Long id){
         Post post = postService.findPost(id);
         if(post == null){
             throw new ResourceNotFoundException("Post","id",id);
         }
-        return new ResponseEntity<>(post, HttpStatus.OK);
+        return post;
     }
     
     @GetMapping("/posts")
-    public ResponseEntity<?> getPosts(){
+    public List<Post> getPosts(){
         List<Post> posts = postService.getPosts();
         if(posts == null || posts.isEmpty()){
             throw new ResourceNotFoundException("Posts");
         }
-        return new ResponseEntity<>(posts, HttpStatus.OK);
+        return posts;
     }
     
     @PostMapping("/posts/crear")
@@ -52,17 +52,12 @@ public class PostController {
                 .local(postDTO.getLocal())
                 .usuario(postDTO.getUsuario())
                 .build();
-        try{
-            postService.savePost(post);
-            return new ResponseEntity<>(post, HttpStatus.CREATED);
-        }
-        catch(Exception ex){
-            throw ex;
-        }
+        postService.savePost(post);
+        return new ResponseEntity<>(post, HttpStatus.CREATED);
     }
     
     @PutMapping("/posts/editar/{id}")
-    public ResponseEntity<?> editarPost(@PathVariable Long id, @RequestBody @Valid PostDTO postDTO){
+    public Post editarPost(@PathVariable Long id, @RequestBody @Valid PostDTO postDTO){
         Post post = postService.findPost(id);
         if(post == null){
             throw new ResourceNotFoundException("Post","id",id);
@@ -76,13 +71,8 @@ public class PostController {
                 .local(postDTO.getLocal())
                 .usuario(postDTO.getUsuario())
                 .build();
-        try{
-            postService.editPost(post);
-            return new ResponseEntity<>(post, HttpStatus.OK);
-        }
-        catch(Exception ex){
-            throw ex;
-        }
+        postService.editPost(post);
+        return post;
     }
     
     @DeleteMapping("/posts/eliminar/{id}")
@@ -92,7 +82,7 @@ public class PostController {
             throw new ResourceNotFoundException("Post","id",id);
         }
         postService.deletePost(id);
-        return new ResponseEntity<>("Local borrado exitosamente", HttpStatus.OK);
+        return new ResponseEntity<>("Local borrado exitosamente", HttpStatus.NO_CONTENT);
     }
     
     @GetMapping("/posts/usuario/{id_usuario}")

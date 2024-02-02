@@ -3,6 +3,7 @@ package com.example.ForoPrecios.service;
 import com.example.ForoPrecios.model.entity.Categoria;
 import com.example.ForoPrecios.repository.ICategoriaRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class CategoriaService implements ICategoriaService {
     }   
 
     @Override
-    public Categoria obtenerCategoriaPorNombre(String nombre) {
+    public Optional<Categoria> obtenerCategoriaPorNombre(String nombre) {
         return categoriaRepo.obtenerCaregoriaPorNombre(nombre);
     }
     

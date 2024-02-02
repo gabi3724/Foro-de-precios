@@ -24,36 +24,35 @@ public class ComentarioController {
     private IComentarioService comentarioService;
     
     @GetMapping("/comentarios/{id}")
-    public ResponseEntity<?> getComentario(@PathVariable Long id){
+    public Comentario getComentario(@PathVariable Long id){
         Comentario comentario = comentarioService.findComentario(id);
         if(comentario == null){
             throw new ResourceNotFoundException("Comentario","id",id);
         } 
-        return new ResponseEntity<>(comentario, HttpStatus.OK);
+        return comentario;
     }
     
     @GetMapping("/comentarios")
-    public ResponseEntity<?> getComentarios(){
+    public List<Comentario> getComentarios(){
         List<Comentario> comentarios = comentarioService.getComentarios(); 
         if(comentarios == null || comentarios.isEmpty()){
             throw new ResourceNotFoundException("Comentarios");
         }
-        return new ResponseEntity<>(comentarios, HttpStatus.OK);
+        return comentarios;
     }
     
     @PostMapping("/comentarios/crear")
     public ResponseEntity<?> crearComentario(@RequestBody @Valid ComentarioDTO comentarioDTO){
-        Comentario comentario = Comentario.builder().texto(comentarioDTO.getTexto()).fecha(comentarioDTO.getFecha()).build();
-        try{
-            comentarioService.saveComentario(comentario);
-            return new ResponseEntity<>(comentario, HttpStatus.CREATED);
-        }catch(Exception ex){
-            throw ex;
-        }
+        Comentario comentario = Comentario.builder().
+                texto(comentarioDTO.getTexto())
+                .fecha(comentarioDTO.getFecha())
+                .build();
+        comentarioService.saveComentario(comentario);
+        return new ResponseEntity<>(comentario, HttpStatus.CREATED);
     }
     
     @PutMapping("/comentarios/editar/{id}")
-    public ResponseEntity<?> editarComentario(@PathVariable Long id, @RequestBody @Valid ComentarioDTO comentarioDTO){
+    public Comentario editarComentario(@PathVariable Long id, @RequestBody @Valid ComentarioDTO comentarioDTO){
         Comentario comentario = comentarioService.findComentario(id);
         if(comentario == null){
             throw new ResourceNotFoundException("Comentario","id",id); 
@@ -61,12 +60,8 @@ public class ComentarioController {
         comentario.setId_comentario(id);
         comentario.setTexto(comentarioDTO.getTexto());
         comentario.setFecha(comentarioDTO.getFecha());
-        try{
-            comentarioService.editComentario(comentario);
-            return new ResponseEntity<>(comentario, HttpStatus.OK);
-        }catch(Exception ex){
-            throw ex;
-        }
+        comentarioService.editComentario(comentario);
+        return comentario;
     }
     
     @DeleteMapping("/comentarios/eliminar/{id}")
@@ -76,7 +71,7 @@ public class ComentarioController {
             throw new ResourceNotFoundException("Comentario","id",id); 
         }
         comentarioService.deleteComentario(id);
-        return new ResponseEntity<>("Comentario borrado exitosamente", HttpStatus.OK);
+        return new ResponseEntity<>("Comentario borrado exitosamente", HttpStatus.NO_CONTENT);
     }
     
 }

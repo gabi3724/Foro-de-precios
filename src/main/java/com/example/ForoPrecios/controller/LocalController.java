@@ -24,36 +24,35 @@ public class LocalController {
     private ILocalService localService;
     
     @GetMapping("/locals/{id}")
-    public ResponseEntity<?> getLocal(@PathVariable Long id){
+    public Local getLocal(@PathVariable Long id){
         Local local = localService.findLocal(id);
         if(local == null){
             throw new ResourceNotFoundException("Local","id",id);
         } 
-        return new ResponseEntity<>(local, HttpStatus.OK);
+        return local;
     }
     
-    @GetMapping("/locals")
-    public ResponseEntity<?> getLocals(){
-        List<Local> locals = localService.getLocals(); 
-        if(locals == null || locals.isEmpty()){
+    @GetMapping("/locales")
+    public List<Local> getLocals(){
+        List<Local> locales = localService.getLocals(); 
+        if(locales == null || locales.isEmpty()){
             throw new ResourceNotFoundException("Locals");
         }
-        return new ResponseEntity<>(locals, HttpStatus.OK);
+        return locales;
     }
     
     @PostMapping("/locals/crear")
     public ResponseEntity<?> crearLocal(@RequestBody @Valid LocalDTO localDTO){
-        Local local = Local.builder().nombre(localDTO.getNombre()).direccion(localDTO.getDireccion()).build();
-        try{
-            localService.saveLocal(local);
-            return new ResponseEntity<>(local, HttpStatus.CREATED);
-        }catch(Exception ex){
-            throw ex;
-        }
+        Local local = Local.builder()
+                .nombre(localDTO.getNombre())
+                .direccion(localDTO.getDireccion())
+                .build();
+        localService.saveLocal(local);
+        return new ResponseEntity<>(local, HttpStatus.CREATED);
     }
     
     @PutMapping("/locals/editar/{id}")
-    public ResponseEntity<?> editarLocal(@PathVariable Long id, @RequestBody @Valid LocalDTO localDTO){
+    public Local editarLocal(@PathVariable Long id, @RequestBody @Valid LocalDTO localDTO){
         Local local = localService.findLocal(id);
         if(local == null){
             throw new ResourceNotFoundException("Local","id",id); 
@@ -61,12 +60,8 @@ public class LocalController {
         local.setId_local(id);
         local.setNombre(localDTO.getNombre());
         local.setDireccion(localDTO.getDireccion());
-        try{
-            localService.editLocal(local);
-            return new ResponseEntity<>(local, HttpStatus.OK);
-        }catch(Exception ex){
-            throw ex;
-        }
+        localService.editLocal(local);
+        return local;
     }
     
     @DeleteMapping("/locals/eliminar/{id}")
@@ -76,7 +71,7 @@ public class LocalController {
             throw new ResourceNotFoundException("Local","id",id); 
         }
         localService.deleteLocal(id);
-        return new ResponseEntity<>("Local borrado exitosamente", HttpStatus.OK);
+        return new ResponseEntity<>("Local borrado exitosamente", HttpStatus.NO_CONTENT);
     }
     
 }
