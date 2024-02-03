@@ -39,7 +39,7 @@ public class CategoriaService implements ICategoriaService {
     }   
 
     @Override
-    public Optional<Categoria> obtenerCategoriaPorNombre(String nombre) {
+    public Categoria obtenerCategoriaPorNombre(String nombre) {
         return categoriaRepo.obtenerCaregoriaPorNombre(nombre);
     }
     

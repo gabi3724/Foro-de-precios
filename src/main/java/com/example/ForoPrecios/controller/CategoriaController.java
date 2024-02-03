@@ -7,7 +7,6 @@ import com.example.ForoPrecios.model.entity.Categoria;
 import com.example.ForoPrecios.service.ICategoriaService;
 import jakarta.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,16 +44,13 @@ public class CategoriaController {
     
     @PostMapping("/categorias/crear")
     public ResponseEntity<?> crearCategoria(@RequestBody @Valid CategoriaDTO categoriaDTO){
-        Optional<Categoria> categoriaOptional = categoriaService.obtenerCategoriaPorNombre(categoriaDTO.getNombre());
-        
-        if (categoriaOptional.isPresent()) {
+        Categoria categoriaOptional = categoriaService.obtenerCategoriaPorNombre(categoriaDTO.getNombre());       
+        if (categoriaOptional != null) {
             throw new ConflictException("Ya existe una categoría con ese nombre");
         }
-        
         Categoria categoria = Categoria.builder()
                 .nombre(categoriaDTO.getNombre())
                 .build();
-        
         categoriaService.saveCategoria(categoria);
         return new ResponseEntity<>(categoria, HttpStatus.CREATED);
     }
