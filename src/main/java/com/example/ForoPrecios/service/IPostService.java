@@ -1,5 +1,6 @@
 package com.example.ForoPrecios.service;
 
+import com.example.ForoPrecios.model.entity.Comentario;
 import com.example.ForoPrecios.model.entity.Post;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public interface IPostService {
     public List<Post> PostsProducto(Long id_producto);
     public List<Post> PostsCategoria(Long id_categoria);
     public List<Post> PostsLocal(Long id_local);
+    public List<Comentario> getComentariosPost(Long id);
     public List<Post> PostsBusqueda(String atributo, String buscar);
     
 }

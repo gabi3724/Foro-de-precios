@@ -1,12 +1,10 @@
 package com.example.ForoPrecios.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,14 +38,8 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
-    
-    /*
-    @OneToMany(mappedBy = "post")
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
     private List<Comentario> comentarios;
-    
-    Features futuras
-    private int me_gusta;
-    private int no_me_gusta;
-    */
-    
+
 }

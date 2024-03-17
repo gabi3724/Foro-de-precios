@@ -1,9 +1,7 @@
 package com.example.ForoPrecios.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,12 +21,12 @@ public class Comentario {
     private String texto;
     private LocalDateTime fecha;
     
-    /*@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "id_usuario")
-    private Usuario usuario;*/
+    private Usuario usuario;
     
-    /*@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "id_post")
-    private Post post;*/
+    private Post post;
     
 }

@@ -1,5 +1,6 @@
 package com.example.ForoPrecios.service;
 
+import com.example.ForoPrecios.model.entity.Comentario;
 import com.example.ForoPrecios.model.entity.Post;
 import com.example.ForoPrecios.repository.IPostRepository;
 import java.util.List;
@@ -56,6 +57,9 @@ public class PostService implements IPostService {
     public List<Post> PostsLocal(Long id_local) {
         return postRepo.obtenerPostsDeLocal(id_local);
     }
+
+    @Override
+    public List<Comentario> getComentariosPost(Long id) { return this.findPost(id).getComentarios(); }
 
     @Override
     public List<Post> PostsBusqueda(String atributo, String buscar) {

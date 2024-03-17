@@ -2,9 +2,12 @@ package com.example.ForoPrecios.controller;
 
 import com.example.ForoPrecios.exception.ResourceNotFoundException;
 import com.example.ForoPrecios.model.dto.PostDTO;
+import com.example.ForoPrecios.model.entity.Comentario;
 import com.example.ForoPrecios.model.entity.Post;
 import com.example.ForoPrecios.service.IPostService;
 import jakarta.validation.Valid;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +18,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
+@RequestMapping("/api/precios")
 public class PostController {
     
     @Autowired
@@ -46,7 +51,7 @@ public class PostController {
     public ResponseEntity<?> crearPost(@RequestBody @Valid PostDTO postDTO){
         Post post = Post.builder()
                 .precio(postDTO.getPrecio())
-                .fecha(postDTO.getFecha())
+                .fecha(LocalDateTime.now())
                 .producto(postDTO.getProducto())
                 .categoria(postDTO.getCategoria())
                 .local(postDTO.getLocal())
@@ -65,7 +70,7 @@ public class PostController {
         post = Post.builder()
                 .id_post(id)
                 .precio(postDTO.getPrecio())
-                .fecha(postDTO.getFecha())
+                .fecha(LocalDateTime.now())
                 .producto(postDTO.getProducto())
                 .categoria(postDTO.getCategoria())
                 .local(postDTO.getLocal())
@@ -96,15 +101,18 @@ public class PostController {
     }
     
     @GetMapping("/posts/categoria/{id_categoria}")
-    public List<Post> getPostCategoria(@PathVariable Long id_categoria){
-        return postService.PostsCategoria(id_categoria);
-    }
+    public List<Post> getPostCategoria(@PathVariable Long id_categoria){ return postService.PostsCategoria(id_categoria); }
     
     @GetMapping("/posts/local/{id_local}")
     public List<Post> getPostLocal(@PathVariable Long id_local){
         return postService.PostsLocal(id_local);
     }
-    
+
+    @GetMapping("/posts/comentarios/{id_post}")
+    public List<Comentario> getComentariosPost(@PathVariable Long id_post){
+        return postService.getComentariosPost(id_post);
+    }
+
     @GetMapping("/posts/busqueda")
     public List<Post> getBuscarPosts(@RequestParam String atributo, @RequestParam String buscar){
         return postService.PostsBusqueda(atributo, buscar);

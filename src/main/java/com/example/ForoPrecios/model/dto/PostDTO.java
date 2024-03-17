@@ -18,9 +18,6 @@ public class PostDTO {
     @Positive(message = "El precio debe ser positivo")
     private Double precio;
     
-    @NotNull(message = "El post debe tener una fecha")
-    private LocalDateTime fecha;
-    
     @NotNull(message = "Debe tener un usuario")
     private Usuario usuario;
     

@@ -9,25 +9,16 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IPostRepository extends JpaRepository<Post,Long> {
-    
-    @Query(
-            value = "SELECT * FROM Post p WHERE p.id_usuario = ?1",
-            nativeQuery = true)
-    List<Post> obtenerPostsDeUsuario(Long id_usuario);
-    
-    @Query(
-            value = "SELECT * FROM Post p WHERE p.id_producto = :id_producto",
-            nativeQuery = true)
+    //Obtener todos los posts de un usuario
+    @Query(value = "SELECT * FROM Post p WHERE p.id_usuario = :id_usuario", nativeQuery = true)
+    List<Post> obtenerPostsDeUsuario(@Param("id_usuario") Long id_usuario);
+    //Obtener todos los posts de un determinado producto
+    @Query(value = "SELECT * FROM Post p WHERE p.id_producto = :id_producto", nativeQuery = true)
     List<Post> obtenerPostsDeProdcuto(@Param("id_producto") Long id_producto);
-   
-    @Query(
-            value = "SELECT * FROM Post p WHERE p.id_categoria = :id_categoria",
-            nativeQuery = true)
+    //Obtener todos los posts de una categoria
+    @Query(value = "SELECT * FROM Post p WHERE p.id_categoria = :id_categoria", nativeQuery = true)
     List<Post> obtenerPostsDeCategoria(@Param("id_categoria") Long id_categoria);
-    
-    @Query(
-            value = "SELECT * FROM Post p WHERE p.id_local = :id_local", 
-            nativeQuery = true)
+    //Obtener todos los posts relacionados a un determinado lugar
+    @Query(value = "SELECT * FROM Post p WHERE p.id_local = :id_local", nativeQuery = true)
     List<Post> obtenerPostsDeLocal(@Param("id_local") Long id_local);
-    
 }
