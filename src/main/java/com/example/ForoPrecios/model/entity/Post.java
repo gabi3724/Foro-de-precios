@@ -1,5 +1,6 @@
 package com.example.ForoPrecios.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class Post {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_post;
     private Double precio;
     private LocalDateTime fecha;
@@ -39,7 +40,8 @@ public class Post {
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
+    @JsonIgnore // Evita que se serialice la relación desde Post a Comentario
     private List<Comentario> comentarios;
 
 }

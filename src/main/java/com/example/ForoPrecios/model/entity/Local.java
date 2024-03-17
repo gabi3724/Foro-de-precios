@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Local {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_local;
     private String nombre;
     private String direccion;

@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class Comentario {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_comentario;
     private String texto;
     private LocalDateTime fecha;

@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Producto {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_producto;
     private String nombre;
     private String marca;

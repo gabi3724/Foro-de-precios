@@ -5,6 +5,8 @@ import com.example.ForoPrecios.model.dto.ComentarioDTO;
 import com.example.ForoPrecios.model.entity.Comentario;
 import com.example.ForoPrecios.service.IComentarioService;
 import jakarta.validation.Valid;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,7 +49,9 @@ public class ComentarioController {
     public ResponseEntity<?> crearComentario(@RequestBody @Valid ComentarioDTO comentarioDTO){
         Comentario comentario = Comentario.builder().
                 texto(comentarioDTO.getTexto())
-                .fecha(comentarioDTO.getFecha())
+                .post(comentarioDTO.getPost())
+                .usuario(comentarioDTO.getUsuario())
+                .fecha(LocalDateTime.now())
                 .build();
         comentarioService.saveComentario(comentario);
         return new ResponseEntity<>(comentario, HttpStatus.CREATED);
@@ -61,7 +65,9 @@ public class ComentarioController {
         }
         comentario.setId_comentario(id);
         comentario.setTexto(comentarioDTO.getTexto());
-        comentario.setFecha(comentarioDTO.getFecha());
+        comentario.setPost(comentarioDTO.getPost());
+        comentario.setUsuario(comentarioDTO.getUsuario());
+        comentario.setFecha(LocalDateTime.now());
         comentarioService.editComentario(comentario);
         return comentario;
     }
