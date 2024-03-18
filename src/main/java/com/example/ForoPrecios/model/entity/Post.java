@@ -40,7 +40,7 @@ public class Post {
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
     @JsonIgnore // Evita que se serialice la relación desde Post a Comentario
     private List<Comentario> comentarios;
 
