@@ -1,5 +1,5 @@
 ![En desarollo](https://img.shields.io/badge/Estado-EN%20DESAROLLO-green)
-![Java](https://img.shields.io/badge/Java-21-blue?style=flat)
+![Java](https://img.shields.io/badge/Java-17-blue?style=flat)
 ![Maven](https://img.shields.io/badge/MVN-4.0.0-blue)
 ![Static Badge](https://img.shields.io/badge/Spring-3.2.2-blue?style=flat&logo=spring)
 
@@ -14,7 +14,7 @@ La idea del proyecto surge de aplicar lo aprendido a lo largo de un curso que re
 
 # Tecnologías y características
 Algunas de las tecnologías y patrones aplicados a lo largo del proyecto fueron las siguientes:
-- Java 21 + Spring Boot + Maven
+- Java 17 + Spring Boot + Maven
 - Base de datos mysql con Wampserver64
 - Manejo de relaciones con Spring Data JPA (ORM)
 - Arquitectura multicapas (model, controler, service, repository, etc)
@@ -24,6 +24,18 @@ Algunas de las tecnologías y patrones aplicados a lo largo del proyecto fueron 
 - Lombock para creación de getters, setters y constructores
 
 Para ver cuestiones más especificas sobre el desarollo como el diagrama de clases y los endpoints cree un documento de word llamado [documentacion](https://github.com/gabi3724/Foro-de-precios/blob/main/implementacion.docx) que se encuentra en este mismo repositorio
+
+# Poner en funcionamiento
+## Herramientas y/o software necesario
+- Cualquier IDE compatible con Java + Maven
+- JDK (Java Development Kit) 17
+- Servidor de base de datos MySQL (Wamp, Xamp o equivalente)
+## Pasos
+- Descargar el proyecto y abrirlo en el IDE
+- Modificar el archivo application.properties con la url, el usuario y la contraseña de su base de datos
+- Poner a correr la base de datos en el puerto 3306
+- Ejecutar la aplicación desde el IDE
+- Ingresar a http://localhost:8080/doc/swagger-ui/index.html#/
 
 # Pasos siguientes
 Como la idea es crear una aplicación funcional aún faltan partes importantes como las que se mencionan a continuación:
