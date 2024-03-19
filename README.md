@@ -6,11 +6,11 @@
 # Aplicación de precios
 El proyecto se centra en el desarrollo de una plataforma similar a un foro, donde los usuarios puedan compartir y buscar precios favorables de productos que han encontrado en diferentes lugares. Al ingresar a la aplicación, los usuarios pueden ver un listado de los precios publicados. A partir de este listado, es posible buscar publicaciones relacionadas con un producto o lugar específico.
 
-# Motivación
-Debido a la situación económica y el bajo control de precios la gente empieza a recorrer distintos lugares con el fin de encontrar los productos que busca al mejor precio posible. En pueblos y ciudades chicas se suelen crear grupos de Facebook o Whatsapp donde se comparte precios entre las personas con el fin de ayudarse entre todos. Si bien suele funcionar se puede volver tedioso tanto para los administradores como para los usuarios. La idea de la aplicación es centralizar todas las publicaciones en un solo lugar y dar la posibilidad de aplicar filtros de búsqueda y poder valorar las publicaciones para corroborar la veracidad de las mismas.     
-
 # Surgimiento
 La idea del proyecto surge de aplicar lo aprendido a lo largo de un curso que realice sobre desarrollo de API’s con Spring Boot y poder utilizarlo como portafolio. Si bien de momento es solo el backend la idea es hacer el desarollo completo y que sea una app funcional.
+
+# Motivación
+Debido a la situación económica y el bajo control de precios la gente empieza a recorrer distintos lugares con el fin de encontrar los productos que busca al mejor precio posible. En pueblos y ciudades chicas se suelen crear grupos de Facebook o Whatsapp donde se comparte precios entre las personas con el fin de ayudarse entre todos. Si bien suele funcionar se puede volver tedioso tanto para los administradores como para los usuarios. La idea de la aplicación es centralizar todas las publicaciones en un solo lugar y dar la posibilidad de aplicar filtros de búsqueda y poder valorar las publicaciones para corroborar la veracidad de las mismas.     
 
 # Tecnologías y características
 Algunas de las tecnologías y patrones aplicados a lo largo del proyecto fueron las siguientes:
@@ -23,7 +23,7 @@ Algunas de las tecnologías y patrones aplicados a lo largo del proyecto fueron 
 - Manejo de excepciones con códigos HTTP y mensajes personalizados
 - Lombock para creación de getters, setters y constructores
 
-Para ver cuestiones más especificas sobre el desarollo como el diagrama de clases y los endpoints cree un documento de word llamado [documentacion](https://github.com/gabi3724/Foro-de-precios/blob/main/implementacion.docx) que se encuentra en este mismo repositorio
+Para ver cuestiones más especificas sobre el desarollo como el diagrama de clases, los endpoints y la muestra de algunas pruebas cree un documento de word llamado [documentacion](https://github.com/gabi3724/Foro-de-precios/blob/main/implementacion.docx) que se encuentra en este mismo repositorio
 
 # Poner en funcionamiento
 ## Herramientas y/o software necesario
@@ -35,11 +35,10 @@ Para ver cuestiones más especificas sobre el desarollo como el diagrama de clas
 - Modificar el archivo application.properties con la url, el usuario y la contraseña de su base de datos
 - Poner a correr la base de datos en el puerto 3306
 - Ejecutar la aplicación desde el IDE
-- Ingresar a http://localhost:8080/doc/swagger-ui/index.html#/
+- Ingresar a http://localhost:8080/doc/swagger-ui/index.html#/ o utilizar postman para hacer peticiones
 
 # Pasos siguientes
 Como la idea es crear una aplicación funcional aún faltan partes importantes como las que se mencionan a continuación:
 - Desarrollo de frontend utilizando algun framework como react o angular.
 - Autenticacion de usuarios con sus respectivos roles utilizando jwt o algo similar.
 - Realizar los test correspondientes
-

@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
     
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<?> handleDataIntegrityViolationException(DataIntegrityViolationException exception, WebRequest webRequest){
-        ApiResponseDTO apiResponse = new ApiResponseDTO("Una de las clases hijas no existe", webRequest.getDescription(false));
+        ApiResponseDTO apiResponse = new ApiResponseDTO("Una de las clases relacionadas no existe", webRequest.getDescription(false));
         return new ResponseEntity<>(apiResponse, HttpStatus.CONFLICT);
     }
     
