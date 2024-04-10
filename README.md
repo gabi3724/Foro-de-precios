@@ -13,6 +13,7 @@ La idea del proyecto surge de aplicar lo aprendido a lo largo de un curso que re
 Debido a la situación económica y el bajo control de precios la gente empieza a recorrer distintos lugares con el fin de encontrar los productos que busca al mejor precio posible. En pueblos y ciudades chicas se suelen crear grupos de Facebook o Whatsapp donde se comparte precios entre las personas con el fin de ayudarse entre todos. Si bien suele funcionar se puede volver tedioso tanto para los administradores como para los usuarios. La idea de la aplicación es centralizar todas las publicaciones en un solo lugar y dar la posibilidad de aplicar filtros de búsqueda y poder valorar las publicaciones para corroborar la veracidad de las mismas.     
 
 # Tecnologías y características
+Para ver cuestiones más especificas sobre el desarollo, como el diagrama de clases, los endpoints y la muestra de algunas pruebas creé un documento de word llamado [documentacion](https://github.com/gabi3724/Foro-de-precios/blob/main/implementacion.docx) que se encuentra en este mismo repositorio
 Algunas de las tecnologías y patrones aplicados a lo largo del proyecto fueron las siguientes:
 - Java 17 + Spring Boot + Maven
 - Base de datos mysql con Wampserver64
@@ -22,8 +23,6 @@ Algunas de las tecnologías y patrones aplicados a lo largo del proyecto fueron 
 - Inyección de dependencias e inversión de control
 - Manejo de excepciones con códigos HTTP y mensajes personalizados
 - Lombock para creación de getters, setters y constructores
-
-Para ver cuestiones más especificas sobre el desarollo como el diagrama de clases, los endpoints y la muestra de algunas pruebas cree un documento de word llamado [documentacion](https://github.com/gabi3724/Foro-de-precios/blob/main/implementacion.docx) que se encuentra en este mismo repositorio
 
 # Poner en funcionamiento
 ## Herramientas y/o software necesario
