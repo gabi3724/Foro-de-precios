@@ -20,24 +20,24 @@ public class Post {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_post;
+    private Long postId;
     private Double precio;
     private LocalDateTime fecha;
     
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "usuarioId")
     private Usuario usuario;
     
     @ManyToOne
-    @JoinColumn(name = "id_local")
+    @JoinColumn(name = "localId")
     private Local local;
     
     @ManyToOne
-    @JoinColumn(name = "id_producto")
+    @JoinColumn(name = "productoId")
     private Producto producto;
     
     @ManyToOne
-    @JoinColumn(name = "id_categoria")
+    @JoinColumn(name = "categoriaId")
     private Categoria categoria;
 
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)

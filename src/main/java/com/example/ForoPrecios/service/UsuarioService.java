@@ -40,7 +40,7 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public boolean existeEmail(String email) {
-        Usuario user = usuarioRepo.buscarUsuarioPorEmail(email);
+        Usuario user = usuarioRepo.findByEmail(email);
         return user != null;
     }
     

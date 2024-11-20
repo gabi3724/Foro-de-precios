@@ -1,9 +1,13 @@
 package com.example.ForoPrecios.service;
 
+import com.example.ForoPrecios.exception.ResourceNotFoundException;
 import com.example.ForoPrecios.model.entity.Comentario;
 import com.example.ForoPrecios.model.entity.Post;
 import com.example.ForoPrecios.repository.IPostRepository;
+
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +18,8 @@ public class PostService implements IPostService {
     private IPostRepository postRepo;
     
     @Override
-    public Post findPost(Long id) {
-        return postRepo.findById(id).orElse(null);
+    public Optional<Post> findPost(Long id) {
+        return postRepo.findById(id);
     }
 
     @Override
@@ -30,7 +34,7 @@ public class PostService implements IPostService {
 
     @Override
     public List<Post> getPosts() {
-        return postRepo.findAll();
+        return (List<Post>) postRepo.findAll();
     }
 
     @Override
@@ -40,26 +44,33 @@ public class PostService implements IPostService {
 
     @Override
     public List<Post> PostsUsuario(Long id_usuario) {
-        return postRepo.obtenerPostsDeUsuario(id_usuario);
+        return postRepo.findByUsuarioUsuarioId(id_usuario);
     }
 
     @Override
-    public List<Post> PostsProducto(Long id_producto) {
-        return postRepo.obtenerPostsDeProdcuto(id_producto);
+    public List<Post> PostsProducto(Long productoId) {
+        return postRepo.findByProductoProductoId(productoId);
     }
 
     @Override
-    public List<Post> PostsCategoria(Long id_categoria) {
-        return postRepo.obtenerPostsDeCategoria(id_categoria);
+    public List<Post> PostsCategoria(Long categoriaId) {
+        return postRepo.findByCategoriaCategoriaId(categoriaId);
     }
 
     @Override
-    public List<Post> PostsLocal(Long id_local) {
-        return postRepo.obtenerPostsDeLocal(id_local);
+    public List<Post> PostsLocal(Long localId) {
+        return postRepo.findByLocalLocalId(localId);
     }
 
     @Override
-    public List<Comentario> getComentariosPost(Long id) { return this.findPost(id).getComentarios(); }
+    public List<Comentario> getComentariosPost(Long postId) {
+        Optional<Post> post = this.findPost(postId);
+        if(post.isPresent()) {
+            return post.get().getComentarios();
+        }else{
+            throw new ResourceNotFoundException("Post","id",postId);
+        }
+    }
 
     @Override
     public List<Post> PostsBusqueda(String atributo, String buscar) {

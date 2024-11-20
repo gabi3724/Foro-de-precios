@@ -59,7 +59,7 @@ public class ProductoController {
         if(producto == null){
             throw new ResourceNotFoundException("Producto","id",id); 
         }
-        producto.setId_producto(id);
+        producto.setProductoId(id);
         producto.setNombre(productoDTO.getNombre());
         producto.setMarca(productoDTO.getMarca());
         productoService.editProducto(producto);

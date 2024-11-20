@@ -18,7 +18,7 @@ public class Local {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_local;
+    private Long localId;
     private String nombre;
     private String direccion;
     

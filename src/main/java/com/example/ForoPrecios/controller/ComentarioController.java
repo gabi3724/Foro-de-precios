@@ -63,7 +63,7 @@ public class ComentarioController {
         if(comentario == null){
             throw new ResourceNotFoundException("Comentario","id",id); 
         }
-        comentario.setId_comentario(id);
+        comentario.setComentarioId(id);
         comentario.setTexto(comentarioDTO.getTexto());
         comentario.setPost(comentarioDTO.getPost());
         comentario.setUsuario(comentarioDTO.getUsuario());

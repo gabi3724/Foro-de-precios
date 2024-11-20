@@ -72,7 +72,7 @@ public class UsuarioController {
             throw new ConflictException("El mail ya existe en la base de datos");
         }
         usuario = Usuario.builder()
-            .id_usuario(id)
+            .usuarioId(id)
             .nombre(usuarioDTO.getNombre())
             .apellido(usuarioDTO.getApellido())
             .email(usuarioDTO.getEmail())

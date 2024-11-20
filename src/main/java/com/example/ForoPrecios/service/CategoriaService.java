@@ -40,7 +40,8 @@ public class CategoriaService implements ICategoriaService {
 
     @Override
     public Categoria obtenerCategoriaPorNombre(String nombre) {
-        return categoriaRepo.obtenerCaregoriaPorNombre(nombre);
+        return categoriaRepo.findByNombre(nombre);
+        //return categoriaRepo.obtenerCategoriaPorNombre(nombre);
     }
     
 }

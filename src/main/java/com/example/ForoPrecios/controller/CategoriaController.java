@@ -63,7 +63,7 @@ public class CategoriaController {
         if(categoria == null){
             throw new ResourceNotFoundException("Categoria","id",id); 
         }
-        categoria.setId_categoria(id);
+        categoria.setCategoriaId(id);
         categoria.setNombre(categoriaDTO.getNombre());
         categoriaService.editCategoria(categoria);
         return new ResponseEntity<>(categoria, HttpStatus.OK);

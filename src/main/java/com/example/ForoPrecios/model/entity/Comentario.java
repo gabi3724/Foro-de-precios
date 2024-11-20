@@ -17,16 +17,16 @@ public class Comentario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_comentario;
+    private Long comentarioId;
     private String texto;
     private LocalDateTime fecha;
     
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "usuarioId")
     private Usuario usuario;
     
     @ManyToOne
-    @JoinColumn(name = "id_post")
+    @JoinColumn(name = "postId")
     private Post post;
     
 }

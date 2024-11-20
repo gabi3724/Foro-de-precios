@@ -59,7 +59,7 @@ public class LocalController {
         if(local == null){
             throw new ResourceNotFoundException("Local","id",id); 
         }
-        local.setId_local(id);
+        local.setLocalId(id);
         local.setNombre(localDTO.getNombre());
         local.setDireccion(localDTO.getDireccion());
         localService.editLocal(local);

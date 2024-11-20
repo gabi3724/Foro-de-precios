@@ -3,10 +3,11 @@ package com.example.ForoPrecios.service;
 import com.example.ForoPrecios.model.entity.Comentario;
 import com.example.ForoPrecios.model.entity.Post;
 import java.util.List;
+import java.util.Optional;
 
 public interface IPostService {
     
-    public Post findPost(Long id);
+    public Optional<Post> findPost(Long id);
     public void savePost(Post post);
     public void deletePost(Long id);
     public List<Post> getPosts();
