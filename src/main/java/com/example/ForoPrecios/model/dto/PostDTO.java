@@ -6,7 +6,8 @@ import com.example.ForoPrecios.model.entity.Producto;
 import com.example.ForoPrecios.model.entity.Usuario;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import java.time.LocalDateTime;
+
+import java.time.Instant;
 import lombok.Builder;
 import lombok.Data;
 
@@ -29,5 +30,7 @@ public class PostDTO {
     
     @NotNull(message = "Debe tener una categoria")
     private Categoria categoria;
+
+    private Instant fecha;
     
 }

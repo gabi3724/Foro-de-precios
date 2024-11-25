@@ -43,8 +43,8 @@ public class PostService implements IPostService {
     }   
 
     @Override
-    public List<Post> postsUsuario(Long id_usuario) {
-        return postRepo.findByUsuarioUsuarioId(id_usuario);
+    public List<Post> postsUsuario(Long usuarioId) {
+        return postRepo.findByUsuarioUsuarioId(usuarioId);
     }
 
     @Override
@@ -64,12 +64,9 @@ public class PostService implements IPostService {
 
     @Override
     public List<Comentario> getComentariosPost(Long postId) {
-        Optional<Post> post = this.findPost(postId);
-        if(post.isPresent()) {
-            return post.get().getComentarios();
-        }else{
-            throw new ResourceNotFoundException("Post","id",postId);
-        }
+        return this.findPost(postId)
+                .map(Post::getComentarios)
+                .orElseThrow(() -> new ResourceNotFoundException("Post","id",postId));
     }
 
     @Override

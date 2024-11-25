@@ -69,8 +69,7 @@ public class UsuarioController {
     
     @DeleteMapping("/usuarios/eliminar/{id}")
     public ResponseEntity<?> eliminarUsuario(@PathVariable Long id){
-
-        return Optional.ofNullable(usuarioService.deleteUsuario(id))
+        return Optional.of(usuarioService.deleteUsuario(id))
                 .filter(filasBorradas -> filasBorradas > 0)
                 .map(filasBorradas -> new ResponseEntity<>("Usuario borrado exitosamente", HttpStatus.OK))
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario", "id",id));

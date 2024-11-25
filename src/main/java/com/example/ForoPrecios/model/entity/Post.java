@@ -3,7 +3,7 @@ package com.example.ForoPrecios.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
     private Double precio;
-    private LocalDateTime fecha;
+    private Instant fecha;
     
     @ManyToOne
     @JoinColumn(name = "usuarioId")

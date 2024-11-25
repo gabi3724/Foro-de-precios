@@ -8,6 +8,7 @@ import com.example.ForoPrecios.model.record.PostRecord;
 import com.example.ForoPrecios.service.IPostService;
 import jakarta.validation.Valid;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -32,53 +33,50 @@ public class PostController {
     @Autowired
     private IPostService postService;
 
-    //Probar
     @GetMapping("/posts/{id}")
     public Post getPost(@PathVariable Long id){
         return postService.findPost(id).orElseThrow(() -> new ResourceNotFoundException("Post","id",id));
     }
 
-    //Probar
     @GetMapping("/posts")
     public List<Post> getPosts(){
-        List<Post> posts = postService.getPosts();
-        if(posts.isEmpty()){
-            throw new ResourceNotFoundException("Posts");
-        }
-        return posts;
+        return postService.getPosts();
     }
     
     @PostMapping("/posts/crear")
     public ResponseEntity<?> crearPost(@RequestBody @Valid PostDTO postDTO){
-        Post post = Post.builder()
-                    .precio(postDTO.getPrecio())
-                    .fecha(LocalDateTime.now())
-                    .producto(postDTO.getProducto())
-                    .categoria(postDTO.getCategoria())
-                    .local(postDTO.getLocal())
-                    .usuario(postDTO.getUsuario())
-                    .build();
-        postService.savePost(post);
+        postService.savePost(Post.builder()
+                            .precio(postDTO.getPrecio())
+                            .fecha(Instant.now())
+                            .producto(postDTO.getProducto())
+                            .categoria(postDTO.getCategoria())
+                            .local(postDTO.getLocal())
+                            .usuario(postDTO.getUsuario())
+                            .build());
         return new ResponseEntity<>("Post creado correctamente", HttpStatus.CREATED);
     }
     
     @PutMapping("/posts/editar/{id}")
-    public Post editarPost(@PathVariable Long id, @RequestBody @Valid PostDTO postDTO){
-        if(postService.findPost(id).isEmpty()){
-            throw new ResourceNotFoundException("Post","id",id);
-        }
-        Post nuevoPost = Post.builder()
-                .postId(id)
-                .precio(postDTO.getPrecio())
-                .fecha(LocalDateTime.now())
-                .producto(postDTO.getProducto())
-                .categoria(postDTO.getCategoria())
-                .local(postDTO.getLocal())
-                .usuario(postDTO.getUsuario())
-                .build();
-        postService.editPost(nuevoPost);
-        return nuevoPost;
+    public ResponseEntity<?> editarPost(@PathVariable Long id, @RequestBody @Valid PostDTO postDTO){
+
+        return postService.findPost(id)
+                .map(p -> {
+                                    postService.editPost(
+                                        Post.builder()
+                                        .postId(p.getPostId())
+                                        .precio(postDTO.getPrecio())
+                                        .fecha(p.getFecha())
+                                        .producto(postDTO.getProducto())
+                                        .categoria(postDTO.getCategoria())
+                                        .local(postDTO.getLocal())
+                                        .usuario(postDTO.getUsuario())
+                                        .build());
+                                    return new ResponseEntity<>("Post editado correctamente", HttpStatus.OK);
+                                }
+                )
+                .orElseThrow(() -> new ResourceNotFoundException("Post","id",id));
     }
+
     
     @DeleteMapping("/posts/eliminar/{id}")
     public ResponseEntity<?> eliminarPost(@PathVariable Long id){
