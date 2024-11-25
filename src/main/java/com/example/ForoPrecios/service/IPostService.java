@@ -12,11 +12,11 @@ public interface IPostService {
     public void deletePost(Long id);
     public List<Post> getPosts();
     public void editPost(Post post);
-    public List<Post> PostsUsuario(Long id_usuario);
-    public List<Post> PostsProducto(Long id_producto);
-    public List<Post> PostsCategoria(Long id_categoria);
-    public List<Post> PostsLocal(Long id_local);
+    public List<Post> postsUsuario(Long id_usuario);
+    public List<Post> postsProducto(Long id_producto);
+    public List<Post> postsCategoria(Long id_categoria);
+    public List<Post> postsLocal(Long id_local);
     public List<Comentario> getComentariosPost(Long id);
-    public List<Post> PostsBusqueda(String atributo, String buscar);
+    public List<Post> postsBusqueda(String atributo, String buscar);
     
 }

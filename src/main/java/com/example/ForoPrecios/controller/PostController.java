@@ -4,6 +4,7 @@ import com.example.ForoPrecios.exception.ResourceNotFoundException;
 import com.example.ForoPrecios.model.dto.PostDTO;
 import com.example.ForoPrecios.model.entity.Comentario;
 import com.example.ForoPrecios.model.entity.Post;
+import com.example.ForoPrecios.model.record.PostRecord;
 import com.example.ForoPrecios.service.IPostService;
 import jakarta.validation.Valid;
 
@@ -34,11 +35,7 @@ public class PostController {
     //Probar
     @GetMapping("/posts/{id}")
     public Post getPost(@PathVariable Long id){
-        Optional<Post> post = postService.findPost(id);
-        if(post.isEmpty()){
-            throw new ResourceNotFoundException("Post","id",id);
-        }
-        return post.get();
+        return postService.findPost(id).orElseThrow(() -> new ResourceNotFoundException("Post","id",id));
     }
 
     //Probar
@@ -94,20 +91,25 @@ public class PostController {
     
     @GetMapping("/posts/usuario/{id_usuario}")
     public List<Post> getPostUsuario(@PathVariable Long id_usuario){
-        return postService.PostsUsuario(id_usuario);
+        return postService.postsUsuario(id_usuario);
+    }
+
+    @GetMapping("/posts/usuario/modificado/{id_usuario}")
+    public List<PostRecord> getPostUsuarioModificado(@PathVariable Long id_usuario){
+        return null;
     }
     
     @GetMapping("/posts/producto/{id_producto}")
     public List<Post> getPostProducto(@PathVariable Long id_producto){
-        return postService.PostsProducto(id_producto);
+        return postService.postsProducto(id_producto);
     }
     
     @GetMapping("/posts/categoria/{id_categoria}")
-    public List<Post> getPostCategoria(@PathVariable Long id_categoria){ return postService.PostsCategoria(id_categoria); }
+    public List<Post> getPostCategoria(@PathVariable Long id_categoria){ return postService.postsCategoria(id_categoria); }
     
     @GetMapping("/posts/local/{id_local}")
     public List<Post> getPostLocal(@PathVariable Long id_local){
-        return postService.PostsLocal(id_local);
+        return postService.postsLocal(id_local);
     }
 
     @GetMapping("/posts/comentarios/{id_post}")
@@ -117,7 +119,7 @@ public class PostController {
 
     @GetMapping("/posts/busqueda")
     public List<Post> getBuscarPosts(@RequestParam String atributo, @RequestParam String buscar){
-        return postService.PostsBusqueda(atributo, buscar);
+        return postService.postsBusqueda(atributo, buscar);
     }
     
 }

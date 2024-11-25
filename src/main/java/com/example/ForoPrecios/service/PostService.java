@@ -43,22 +43,22 @@ public class PostService implements IPostService {
     }   
 
     @Override
-    public List<Post> PostsUsuario(Long id_usuario) {
+    public List<Post> postsUsuario(Long id_usuario) {
         return postRepo.findByUsuarioUsuarioId(id_usuario);
     }
 
     @Override
-    public List<Post> PostsProducto(Long productoId) {
+    public List<Post> postsProducto(Long productoId) {
         return postRepo.findByProductoProductoId(productoId);
     }
 
     @Override
-    public List<Post> PostsCategoria(Long categoriaId) {
+    public List<Post> postsCategoria(Long categoriaId) {
         return postRepo.findByCategoriaCategoriaId(categoriaId);
     }
 
     @Override
-    public List<Post> PostsLocal(Long localId) {
+    public List<Post> postsLocal(Long localId) {
         return postRepo.findByLocalLocalId(localId);
     }
 
@@ -73,7 +73,7 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public List<Post> PostsBusqueda(String atributo, String buscar) {
+    public List<Post> postsBusqueda(String atributo, String buscar) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
     

@@ -20,14 +20,12 @@ public class Usuario {
     private Long usuarioId;
 
     private String nombre;
+
     private String apellido;
+
+    @Column(unique = true)
     private String email;
+
     private String contraseña;
-
-    /*@OneToMany(mappedBy = "usuario")
-    private List<Comentario> comentarios;*/
-
-    /*@OneToMany(mappedBy = "usuario")
-    private List<Post> posts;*/
     
 }
