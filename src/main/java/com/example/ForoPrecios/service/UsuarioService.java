@@ -69,9 +69,8 @@ public class UsuarioService implements IUsuarioService {
                             ))
                             .collect(Collectors.toList());
                     // Retornar un PostRecordByUser con la información del usuario y los posts
-                    return Optional.of(new PostRecordByUser(postsRecords, user.getNombre()+" "+user.getApellido(), postsRecords.size()));
-                })
-                .orElse(Optional.empty());  // Si no se encuentra el usuario, retornamos null
+                    return new PostRecordByUser(postsRecords, user.getNombre()+" "+user.getApellido(), postsRecords.size());
+                });
     }
 
 }
