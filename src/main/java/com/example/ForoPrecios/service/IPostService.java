@@ -2,6 +2,9 @@ package com.example.ForoPrecios.service;
 
 import com.example.ForoPrecios.model.entity.Comentario;
 import com.example.ForoPrecios.model.entity.Post;
+import com.example.ForoPrecios.model.record.PostFindRecord;
+
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +20,6 @@ public interface IPostService {
     public List<Post> postsCategoria(Long id_categoria);
     public List<Post> postsLocal(Long id_local);
     public List<Comentario> getComentariosPost(Long id);
-    public List<Post> postsBusqueda(String atributo, String buscar);
+    public List<PostFindRecord> findPostByTime(Instant fecha);
     
 }

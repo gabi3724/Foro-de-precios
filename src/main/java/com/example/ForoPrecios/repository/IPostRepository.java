@@ -1,6 +1,8 @@
 package com.example.ForoPrecios.repository;
 
 import com.example.ForoPrecios.model.entity.Post;
+
+import java.time.Instant;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,5 +24,7 @@ public interface IPostRepository extends JpaRepository<Post,Long> {
     List<Post> findByCategoriaCategoriaId(Long categoriaId);
 
     List<Post> findByLocalLocalId(Long localId);
+
+    //List<Post> findByFechaLess(Instant time);
 
 }

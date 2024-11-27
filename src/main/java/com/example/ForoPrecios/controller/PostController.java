@@ -4,6 +4,8 @@ import com.example.ForoPrecios.exception.ResourceNotFoundException;
 import com.example.ForoPrecios.model.dto.PostDTO;
 import com.example.ForoPrecios.model.entity.Comentario;
 import com.example.ForoPrecios.model.entity.Post;
+import com.example.ForoPrecios.model.enums.Antiguedad;
+import com.example.ForoPrecios.model.record.PostFindRecord;
 import com.example.ForoPrecios.model.record.PostRecord;
 import com.example.ForoPrecios.service.IPostService;
 import jakarta.validation.Valid;
@@ -115,9 +117,9 @@ public class PostController {
         return postService.getComentariosPost(id_post);
     }
 
-    @GetMapping("/posts/busqueda")
-    public List<Post> getBuscarPosts(@RequestParam String atributo, @RequestParam String buscar){
-        return postService.postsBusqueda(atributo, buscar);
+    @GetMapping("/posts/antiguedad")
+    public List<PostFindRecord> getFindPostsByAntiguedad(@RequestParam Antiguedad antiguedad){
+        return postService.findPostByTime(antiguedad.getTime());
     }
     
 }

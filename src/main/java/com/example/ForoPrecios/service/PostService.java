@@ -3,10 +3,16 @@ package com.example.ForoPrecios.service;
 import com.example.ForoPrecios.exception.ResourceNotFoundException;
 import com.example.ForoPrecios.model.entity.Comentario;
 import com.example.ForoPrecios.model.entity.Post;
+import com.example.ForoPrecios.model.enums.Antiguedad;
+import com.example.ForoPrecios.model.record.PostFindRecord;
 import com.example.ForoPrecios.repository.IPostRepository;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,8 +76,18 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public List<Post> postsBusqueda(String atributo, String buscar) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public List<PostFindRecord> findPostByTime(Instant fecha) {
+        return postRepo.findAll()
+                .stream()
+                .filter(post -> post.getFecha().isAfter(fecha))
+                .map(p -> new PostFindRecord(
+                                p.getProducto().getNombre(),
+                                p.getPrecio(),
+                                p.getFecha().atZone(ZoneId.of("America/Argentina/Buenos_Aires")),
+                                p.getUsuario().getNombre()+" "+p.getUsuario().getApellido(),
+                                p.getLocal().getNombre() +' '+p.getLocal().getDireccion(),
+                                p.getCategoria().getNombre()
+                )).toList();
     }
     
 }
